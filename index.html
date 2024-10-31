@@ -1,314 +1,197 @@
 <!DOCTYPE html>
-<html>
-    <title>Site is Under Development</title>
+<html lang="en">
 <head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(45deg, #0f172a, #1e293b);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      perspective: 1000px;
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
 
-    .container {
-      position: relative;
-      padding: 3rem;
-      max-width: 90%;
-      width: 600px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      transform-style: preserve-3d;
-      animation: float 6s infinite ease-in-out;
-    }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
 
-    /* Glitch effect styles */
-    .glitch {
-      position: relative;
-      color: white;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      animation: glitch 2s infinite;
-    }
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
 
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+        .icon {
+            width: 48px;
+            height: 48px;
+        }
 
-    .glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #ff00ff;
-      clip: rect(24px, 550px, 90px, 0);
-      animation: glitch-anim 3s infinite linear alternate-reverse;
-    }
+        .bounce {
+            animation: bounce 2s infinite;
+        }
 
-    .glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #00fff9;
-      clip: rect(85px, 550px, 140px, 0);
-      animation: glitch-anim2 2.5s infinite linear alternate-reverse;
-    }
+        .spin {
+            animation: spin 2s linear infinite;
+        }
 
-    @keyframes glitch-anim {
-      0% {
-        clip: rect(39px, 9999px, 17px, 0);
-      }
-      20% {
-        clip: rect(13px, 9999px, 83px, 0);
-      }
-      40% {
-        clip: rect(140px, 9999px, 16px, 0);
-      }
-      60% {
-        clip: rect(24px, 9999px, 88px, 0);
-      }
-      80% {
-        clip: rect(67px, 9999px, 37px, 0);
-      }
-      100% {
-        clip: rect(10px, 9999px, 75px, 0);
-      }
-    }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
 
-    @keyframes glitch-anim2 {
-      0% {
-        clip: rect(7px, 9999px, 99px, 0);
-      }
-      20% {
-        clip: rect(41px, 9999px, 73px, 0);
-      }
-      40% {
-        clip: rect(55px, 9999px, 44px, 0);
-      }
-      60% {
-        clip: rect(89px, 9999px, 22px, 0);
-      }
-      80% {
-        clip: rect(35px, 9999px, 95px, 0);
-      }
-      100% {
-        clip: rect(69px, 9999px, 31px, 0);
-      }
-    }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-out;
+        }
 
-    /* Progress bar styles */
-    .progress-container {
-      margin: 2rem 0;
-      position: relative;
-    }
+        p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
 
-    .progress-bar {
-      width: 100%;
-      height: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 3px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
 
-    .progress {
-      width: 65%;
-      height: 100%;
-      background: linear-gradient(90deg, #4f46e5, #6366f1, #818cf8);
-      border-radius: 12px;
-      position: relative;
-      transition: width 1s ease;
-      animation: progressPulse 2s infinite;
-    }
+        .progress {
+            width: 50%;
+            height: 100%;
+            background: white;
+            border-radius: 4px;
+            animation: progress 2s ease-in-out infinite;
+        }
 
-    .progress::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-      );
-      animation: progressShine 2s infinite;
-    }
+        .timer {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
 
-    .progress-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-weight: bold;
-      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
 
-    @keyframes progressPulse {
-      0%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(0.95); }
-    }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
 
-    @keyframes progressShine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
 
-    .blob {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: linear-gradient(180deg, #60a5fa, #3b82f6);
-      border-radius: 50%;
-      filter: blur(50px);
-      z-index: -1;
-      animation: move 8s infinite linear;
-      opacity: 0.7;
-    }
+        @keyframes progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
 
-    .blob:nth-child(2) {
-      background: linear-gradient(180deg, #818cf8, #6366f1);
-      animation-delay: -4s;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .blob:nth-child(3) {
-      background: linear-gradient(180deg, #c084fc, #8b5cf6);
-      animation-delay: -6s;
-      width: 250px;
-      height: 250px;
-    }
-
-    .dev-button {
-      padding: 0.8rem 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 30px;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .dev-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-      );
-      transition: 0.5s;
-    }
-
-    .dev-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .dev-button:hover::before {
-      left: 100%;
-    }
-
-    .status-badge {
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      background: linear-gradient(45deg, #22c55e, #16a34a);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      transform: rotate(10deg);
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-      animation: badgePulse 2s infinite;
-    }
-
-    p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 2rem;
-      }
-      
-      .glitch {
-        font-size: 2rem;
-      }
-      
-      p {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .glitch {
-        font-size: 1.5rem;
-      }
-      
-      .container {
-        padding: 1.5rem;
-      }
-      
-      .progress-bar {
-        height: 25px;
-      }
-    }
-  </style>
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .icon {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="blob"></div>
-  <div class="blob"></div>
-  <div class="blob"></div>
-  
-  <div class="container">
-    <div class="status-badge">Working on it..</div>
-    <h1 class="glitch" data-text="Under Development">Under Development</h1>
-    <p>Kamm kar raha hu bhai ruhk</p>
-    
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress"></div>
-        <div class="progress-text">40% Complete</div>
-      </div>
+    <div class="container">
+        <div class="icons">
+            <svg class="icon bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <svg class="icon spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            <svg class="icon pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+
+        <h1>Under Development</h1>
+        <p>Something awesome is in the works!</p>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <p>kamm kar raha hu bhai , jaldi aayge abhi im working on other project's</p>
+
+        <div class="timer">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span id="countdown">in 2-4 day's</span>
+        </div>
     </div>
-    
-    <a href="https://www.instagram.com/oxyzox.exe/" class="dev-button">SITE DEVELOPER</a>
-  </div>
+
+    <script>
+        // Optional: Add any interactive features or countdown timer here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Example: You can add a hover effect to the container
+            const container = document.querySelector('.container');
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                container.style.background = `
+                    rgba(255, 255, 255, 0.1)
+                    radial-gradient(
+                        600px circle at ${x}px ${y}px,
+                        rgba(255,255,255,0.1),
+                        transparent 40%
+                    )
+                `;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                container.style.background = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    </script>
 </body>
 </html>
