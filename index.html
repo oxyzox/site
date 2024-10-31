@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+    <title>Site is Under Development</title>
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(45deg, #0f172a, #1e293b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .container {
+      position: relative;
+      padding: 3rem;
+      max-width: 90%;
+      width: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      transform-style: preserve-3d;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    /* Glitch effect styles */
+    .glitch {
+      position: relative;
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      animation: glitch 2s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00ff;
+      clip: rect(24px, 550px, 90px, 0);
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #00fff9;
+      clip: rect(85px, 550px, 140px, 0);
+      animation: glitch-anim2 2.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+      0% {
+        clip: rect(39px, 9999px, 17px, 0);
+      }
+      20% {
+        clip: rect(13px, 9999px, 83px, 0);
+      }
+      40% {
+        clip: rect(140px, 9999px, 16px, 0);
+      }
+      60% {
+        clip: rect(24px, 9999px, 88px, 0);
+      }
+      80% {
+        clip: rect(67px, 9999px, 37px, 0);
+      }
+      100% {
+        clip: rect(10px, 9999px, 75px, 0);
+      }
+    }
+
+    @keyframes glitch-anim2 {
+      0% {
+        clip: rect(7px, 9999px, 99px, 0);
+      }
+      20% {
+        clip: rect(41px, 9999px, 73px, 0);
+      }
+      40% {
+        clip: rect(55px, 9999px, 44px, 0);
+      }
+      60% {
+        clip: rect(89px, 9999px, 22px, 0);
+      }
+      80% {
+        clip: rect(35px, 9999px, 95px, 0);
+      }
+      100% {
+        clip: rect(69px, 9999px, 31px, 0);
+      }
+    }
+
+    /* Progress bar styles */
+    .progress-container {
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 3px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress {
+      width: 65%;
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #6366f1, #818cf8);
+      border-radius: 12px;
+      position: relative;
+      transition: width 1s ease;
+      animation: progressPulse 2s infinite;
+    }
+
+    .progress::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      animation: progressShine 2s infinite;
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    @keyframes progressPulse {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.95); }
+    }
+
+    @keyframes progressShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .blob {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(180deg, #60a5fa, #3b82f6);
+      border-radius: 50%;
+      filter: blur(50px);
+      z-index: -1;
+      animation: move 8s infinite linear;
+      opacity: 0.7;
+    }
+
+    .blob:nth-child(2) {
+      background: linear-gradient(180deg, #818cf8, #6366f1);
+      animation-delay: -4s;
+    }
+
+    .blob:nth-child(3) {
+      background: linear-gradient(180deg, #c084fc, #8b5cf6);
+      animation-delay: -6s;
+      width: 250px;
+      height: 250px;
+    }
+
+    .dev-button {
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .dev-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    .dev-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .dev-button:hover::before {
+      left: 100%;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background: linear-gradient(45deg, #22c55e, #16a34a);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      transform: rotate(10deg);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+      animation: badgePulse 2s infinite;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 2rem;
+      }
+      
+      .glitch {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .glitch {
+        font-size: 1.5rem;
+      }
+      
+      .container {
+        padding: 1.5rem;
+      }
+      
+      .progress-bar {
+        height: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+  
+  <div class="container">
+    <div class="status-badge">Working on it..</div>
+    <h1 class="glitch" data-text="Under Development">Under Development</h1>
+    <p>Kamm kar raha hu bhai ruhk</p>
+    
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress"></div>
+        <div class="progress-text">40% Complete</div>
+      </div>
+    </div>
+    
+    <a href="https://www.instagram.com/oxyzox.exe/" class="dev-button">SITE DEVELOPER</a>
+  </div>
+</body>
+</html>
